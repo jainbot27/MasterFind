@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
+  //i hate coding
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
