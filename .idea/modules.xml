@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EndOfYear.iml" filepath="$PROJECT_DIR$/EndOfYear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/name.iml" filepath="$PROJECT_DIR$/name.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/name_android.iml" filepath="$PROJECT_DIR$/android/name_android.iml" />
     </modules>
   </component>
 </project>
