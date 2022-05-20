@@ -116,26 +116,3 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-/* This is a paragraph.
-This is a paragraph.
-This is a paragraph.
-This is a paragraph.
-*/
-
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-// this is a paragraph
-
-// kevintest1
