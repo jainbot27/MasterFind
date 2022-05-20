@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   //i hate coding
   // no u 
+  // a merge needs to happen
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
