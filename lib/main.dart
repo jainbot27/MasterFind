@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:name/login_logic.dart';
+import 'package:name/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -51,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   enableSuggestions: false,
                   controller: usernameController,
                   decoration: const InputDecoration(
-                    hintText: 'Username',
+                    hintText: 'Email',
                   ),
                 ),
               ),
@@ -73,10 +75,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
             Container(
-                padding: EdgeInsets.fromLTRB(520, 0, 520, 0),
+                padding: const EdgeInsets.fromLTRB(520, 0, 520, 0),
                 child: ElevatedButton(
                   child: const Text('Login'),
-                  onPressed: () {},
+                  onPressed: () {
+                    loginToFlutter(usernameController.text,
+                        passwordController.text, context);
+                  },
                 ))
           ],
         ));
