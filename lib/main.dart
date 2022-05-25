@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:name/game_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -97,16 +98,13 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+          children: [
+            ElevatedButton(
+              child: const Text('To Game Screen'),
+              onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const GameScreen()),);},),
           ],
         ),
+          
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
@@ -116,6 +114,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-// This is the kevin1 branch.
-// second comment.
