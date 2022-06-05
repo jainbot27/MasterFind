@@ -5,11 +5,12 @@ import 'package:name/error_message.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
 
-void loginToFlutter(String username, String password, BuildContext context) async {
+Future<bool> loginToFlutter(String username, String password, BuildContext context) async {
   try {
     await auth.signInWithEmailAndPassword(
       email: username, 
       password: password); 
+    return true;
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
       createErrorMessage(context, 'Your account does not exist');
@@ -18,5 +19,6 @@ void loginToFlutter(String username, String password, BuildContext context) asyn
     } else {
       createErrorMessage(context, e.code);
     }
+    return false;
   }
 }

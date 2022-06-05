@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:name/new_user_logic.dart';
+import 'package:name/leaderboard.dart';
 
 class MakeUser extends StatelessWidget {
 
@@ -63,11 +64,17 @@ class MakeUser extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(520, 0, 520, 0),
                 child: ElevatedButton(
                   child: const Text('Make Your New Account!'),
-                  onPressed: () {
-                    makeNewUser(usernameController.text, passwordController.text, passwordConfirmController.text, context);
-                    usernameController.clear();
+                  onPressed: () async {
+                    bool xd = await makeNewUser(usernameController.text, passwordController.text, passwordConfirmController.text, context);
                     passwordController.clear(); 
                     passwordConfirmController.clear(); 
+                    if (!xd) return;
+                    await leadInfo.doc(usernameController.text).set({
+                      'email': usernameController.text,
+                      'wins': 0,
+                      'losses': 0,
+                    });
+                    usernameController.clear();
                   },
                 )),
           ],
