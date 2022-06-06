@@ -2,17 +2,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:name/error_message.dart';
 
-void makeNewUser(String email, String password, String confirmPassword, BuildContext context) async {
+Future<bool> makeNewUser(String email, String password, String confirmPassword, BuildContext context) async {
   if (password != confirmPassword) {
     createErrorMessage(context, 'Your passwords are not the same'); 
-    return;
+    return false;
   }
   try {
-    UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
     Navigator.of(context).pop();
+    return true;
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
       createErrorMessage(context, 'The password provided is too weak.');
@@ -21,5 +22,6 @@ void makeNewUser(String email, String password, String confirmPassword, BuildCon
     } else {
       createErrorMessage(context, e.code);
     }
+    return false;
   }
 }

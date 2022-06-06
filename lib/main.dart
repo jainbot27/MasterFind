@@ -4,10 +4,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:name/login_logic.dart';
 import 'package:name/firebase_options.dart';
 import 'package:name/make_a_user.dart';
+import 'package:name/main_screen.dart';
+import 'package:name/leaderboard.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // getNames();
   runApp(const MyApp());
 }
 
@@ -18,6 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MasterFind',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -80,22 +84,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.fromLTRB(520, 0, 520, 0),
                 child: ElevatedButton(
                   child: const Text('Login'),
-                  onPressed: () {
-                    loginToFlutter(usernameController.text,
+                  onPressed: () async {
+                    bool okay = await loginToFlutter(usernameController.text,
                         passwordController.text, context);
                     usernameController.clear();
-                    passwordController.clear(); 
+                    passwordController.clear();
+                    if (okay) {
+                      // print("DEBUG");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MainScreen()));
+                    }
                   },
                 )),
             TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MakeUser()),
-              );
-            },
-            child: const Text('New User'),
-          ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MakeUser()),
+                );
+              },
+              child: const Text('New User'),
+            ),
           ],
         ));
   }
