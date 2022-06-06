@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:name/leaderboard.dart';
+import 'package:name/gameui.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -7,6 +8,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  List<int> currentVals = [0, 0, 0, 0];
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -21,6 +23,28 @@ class _MainScreenState extends State<MainScreen> {
                 },
               ),
             ]),
+        body: Form(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  gameUI(sett: (value) {
+                    currentVals[0] = value!; 
+                  },),
+                  gameUI(sett: (value) {
+                    currentVals[1] = value!; 
+                  },),
+                  gameUI(sett: (value) {
+                    currentVals[2] = value!; 
+                  },),
+                  gameUI(sett: (value) {
+                    currentVals[3] = value!; 
+                  },),
+                ],
+              )
+            ]
+          ),
+        ),
       ),
       debugShowCheckedModeBanner: false,
     );

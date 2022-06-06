@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:name/game_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:name/login_logic.dart';
 import 'package:name/firebase_options.dart';
 import 'package:name/make_a_user.dart';
 import 'package:name/main_screen.dart';
-import 'package:name/leaderboard.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

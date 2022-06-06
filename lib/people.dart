@@ -10,4 +10,5 @@ class Person {
     required this.wins,
     required this.losses
   });
+  
 }
