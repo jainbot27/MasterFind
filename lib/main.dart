@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
             Container(
-                padding: const EdgeInsets.fromLTRB(520, 0, 520, 0),
+                padding: const EdgeInsets.fromLTRB(750, 0, 750, 0),
                 child: ElevatedButton(
                   child: const Text('Login'),
                   onPressed: () async {

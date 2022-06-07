@@ -35,8 +35,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
   }
 
   List<int> _checkGuess(List<int> guess) {
-    int matches = 0;
-    int perms = 0;
+    int allMat = 0;
+    int permutationAmt = 0;
 
     /*
     ATHARB JAIN.
@@ -44,17 +44,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
     Change the guess[i] to your guess array and _answer[j] to the answer array
     */
 
-    for (var i = 0; i < guess.length; i++) {
-      for (var j = 0; j < guess.length; j++) {
+    for (int i = 0; i < 4; i++) {
+      for (int j = 0; j < 4; j++) {
         if (guess[i] == answer[j]) {
-          if (i == j)
-            matches++;
-          else
-            perms++;
+          if (i == j) {
+            allMat++;
+          } else {
+            permutationAmt++;
+          }
         }
       }
     }
-    return [matches, perms];
+    return [allMat, permutationAmt];
   }
 
   /*
@@ -66,15 +67,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
   */
 
   void addGuess(List<int> guess, BuildContext context) async {
-    List<int> matches_perms = _checkGuess(guess);
-    String _message = '';
+    List<int> answer = _checkGuess(guess);
+    String retMsg = '';
     amtGuesses++;
-    if (matches_perms[0] != 4) {
-      _message = "Matches: " +
-          matches_perms[0].toString() +
-          "; Perms: " +
-          matches_perms[1].toString();
-      print(_message);
+    if (answer[0] != 4) {
+      retMsg = "# in right spot: " +
+          answer[0].toString() +
+          "; # of correct color but wrong spot: " +
+          answer[1].toString();
+      print(retMsg);
       if (amtGuesses == 10) {
         int curWins = -1, curLosses = -1; 
         await leadInfo.get().then((QuerySnapshot querySnapshot) {
@@ -127,7 +128,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
     _guessList.add(Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text(foo.toString() + " " + _message)],
+      children: [Text(foo.toString() + " " + retMsg)],
     ));
     // notifyListeners();
   }
