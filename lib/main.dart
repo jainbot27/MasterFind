@@ -4,12 +4,29 @@ import 'package:name/login_logic.dart';
 import 'package:name/firebase_options.dart';
 import 'package:name/make_a_user.dart';
 import 'package:name/main_screen.dart';
+import 'package:name/game_logic.dart';
+
+String globalEmail = '';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // getNames();
-  runApp(const MyApp());
+  for (int i = 0; i < 6; i++) 
+    answer.add(i); 
+  answer.shuffle();
+  // print(answer);
+  answer.removeAt(5);
+  answer.removeAt(4);
+
+  runApp(
+  // MultiProvider(
+  //   // providers: [
+  //   //   ChangeNotifierProvider(create: (context) => MainScreen()),
+  //   // ],
+  //   child: MyApp(),
+  // ));
+  MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -85,10 +102,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () async {
                     bool okay = await loginToFlutter(usernameController.text,
                         passwordController.text, context);
+                    globalEmail = usernameController.text; 
                     usernameController.clear();
                     passwordController.clear();
                     if (okay) {
                       // print("DEBUG");
+                      resetGame();
+                      print(answer);
                       Navigator.push(
                           context,
                           MaterialPageRoute(

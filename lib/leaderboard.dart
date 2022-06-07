@@ -64,6 +64,6 @@ class Leaderboard extends StatelessWidget {
 
   String get_stuff(Person P) {
     if (P.wins + P.losses == 0) return '0';
-    else return (P.wins.toDouble() / (P.wins + P.losses).toDouble()).toString();
+    else return ((P.wins.toDouble() / (P.wins + P.losses).toDouble()) * 100).toString();
   }
 }

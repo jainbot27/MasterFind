@@ -9,9 +9,22 @@ List<Color> _list = [
   Colors.orange
 ];
 
+List<String> prList = [
+  'Purple',
+  'Blue',
+  'Red',
+  'Green',
+  'Yellow',
+  'Orange'
+];
+
+
+List<int> array = [0, 0, 0, 0];
+
 class gameUI extends FormField<int> {
   gameUI({
     required FormFieldSetter<int> sett,
+    required int pos,
     int val = 0,
     AutovalidateMode: AutovalidateMode.always,
   }) : super(
@@ -20,6 +33,7 @@ class gameUI extends FormField<int> {
                 children: [
                   IconButton(
                       onPressed: () {
+                        array[pos] = (array[pos] + 1) % 6;
                         state.didChange((state.value! + 1) % 6);
                       },
                       icon: Icon(Icons.arrow_drop_up)),
@@ -33,6 +47,7 @@ class gameUI extends FormField<int> {
                   ),
                   IconButton(
                       onPressed: () {
+                        array[pos] = (array[pos] + 5) % 6;
                         state.didChange((state.value! + 5) % 6);
                       },
                       icon: Icon(Icons.arrow_drop_down))
