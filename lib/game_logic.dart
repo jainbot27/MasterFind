@@ -123,7 +123,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
     }
     List<String> foo = [];
     for (int i = 0; i < 4; i++)   {
-      foo.add(prList[i]);
+      foo.add(prList[guess[i]]);
     }
 
     _guessList.add(Row(
